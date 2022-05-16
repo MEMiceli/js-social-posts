@@ -1,3 +1,9 @@
+// function//
+
+function addLike (){
+    document.querySelector(".like-button").classList.add = (`.like-button--liked`);
+}
+
 const posts = [
     {
         "id": 1,
@@ -69,7 +75,8 @@ const posts = [
 // commentare template di prova e prendere elemento contenitore da html
 
 let container = document.querySelector(".posts-list");
-
+// let likeB = document.querySelector(".like-button")
+//prendere i post dall'oggetto in js tramite ciclo for
 for(let i = 0; i < posts.length; i++){
     const post =`
     <div class="post">
@@ -91,7 +98,7 @@ for(let i = 0; i < posts.length; i++){
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button" href="#" data-postid="${posts[i].id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -104,13 +111,15 @@ for(let i = 0; i < posts.length; i++){
         </div>
         `;
         if(posts[i].author.image === null){
-            
-            posts[i].author.image = posts[i].author.name;
+        //sostituire immagine nulla con iniziali nome ( per adesso nome e cognome)
+             posts[i].author.image = posts[i].author.name;
         }
     container.innerHTML += post;    
 }
-//prendere i post dall'oggetto in js tramite ciclo for
+
+
 
 // aggiungere evento click per aggiungere caratteristica da css con cambio colore e modifica numero like post collegato
+document.querySelector(".like-button").addEventListener("click", addLike);
 
 //pushare id con evento click in un secondo array
